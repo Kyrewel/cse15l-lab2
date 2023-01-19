@@ -12,6 +12,18 @@ class Handler implements URLHandler {
         } else if (url.getPath().equals("/increment")) {
             num += 1;
             return String.format("Number incremented!");
+        } else if (url.getPath().equals("/cats")) {
+            String[] parameters = url.getQuery().split("=");
+            if (parameters[0].equals("mood")) {
+                if (parameters[1].equals("good")) {
+                    return String.format("I like cat food. I will not rip up the couch today");
+                } else if (parameters[1].equals("bad")) {
+                    return String.format("I SHALL DESTROY THE WORLD");
+                } else {
+                    return String.format("I am robot. Mood not valid");
+                }
+            }
+            return "404 Not found!";
         } else {
             System.out.println("Path: " + url.getPath());
             if (url.getPath().contains("/add")) {
